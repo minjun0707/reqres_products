@@ -1,4 +1,3 @@
-값을 내 정보에 맞도록 (반드시) 수정한다.
 Jenkinsfile
 pipeline {
     agent any
