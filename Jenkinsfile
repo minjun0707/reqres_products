@@ -69,7 +69,7 @@ pipeline {
                     sed 's/latest/v${env.BUILD_ID}/g' kubernetes/deploy.yaml > output.yaml
                     cat output.yaml
                     kubectl apply -f output.yaml
-                    kubectl apply -f azure/service.yaml
+                    kubectl apply -f kubernetes/service.yaml
                     rm output.yaml
                     """
                 }
