@@ -7,7 +7,7 @@ environment {
     RESOURCE_GROUP = 'user04-rsrcgrp'
     AKS_NAMESPACE = 'default'
     AZURE_CREDENTIALS_ID = 'Azure-Cred'
-    TENANT_ID = '29d166ad-94ec-45cb-9f65-561c038e1c7a' // Service Principal 등록 후 생성된 ID
+    TENANT_ID = 'f46af6a3-e73f-4ab2-a1f7-f33919eda5ac' // Service Principal 등록 후 생성된 ID
     GIT_USER_NAME = 'minjun0707'
     GIT_USER_EMAIL = 'jmk7117@naver.com'
     GITHUB_CREDENTIALS_ID = 'Github-Cred'
