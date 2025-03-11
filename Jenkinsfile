@@ -101,23 +101,32 @@ pipeline {
     }
     steps {
         script {
-            withCredentials([string(credentialsId: 'Github-Cred', variable: 'GIT_CREDENTIALS')]) {
+            withCredentials([usernamePassword(credentialsId: 'Github-Cred', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_TOKEN')]) {
                 sh """
                     git config --global user.email "jmk7117@naver.com"
                     git config --global user.name "minjun0707"
-                    git clone https://\$GIT_CREDENTIALS@${GITHUB_REPO} repo
+
+                    # GitHub 저장소 클론 (PAT 사용)
+                    git clone https://${GIT_USERNAME}:${GIT_TOKEN}@${GITHUB_REPO} repo
+
+                    # deploy.yaml 파일 복사
                     cp kubernetes/deploy.yaml repo/kubernetes/deploy.yaml
+
+                    # 변경 사항 커밋 및 푸시
                     cd repo
                     git add kubernetes/deploy.yaml
                     git commit -m "Update deploy.yaml with build ${env.BUILD_NUMBER}"
-                    git push origin master
+                    git push https://${GIT_USERNAME}:${GIT_TOKEN}@${GITHUB_REPO} master
+
+                    # 작업 폴더 정리
                     cd ..
                     rm -rf repo
                 """
             }
         }
     }
-} 
+}
+ 
 
 
 
